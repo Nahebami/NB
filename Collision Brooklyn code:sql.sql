@@ -15,7 +15,7 @@ order by 2 desc
 --Top 3 factors
 SELECT contributing_factor_vehicle_1, count(unique_key) cnt 
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-WHERE borough = 'BROOKLYN' -- 391,772
+WHERE borough = 'BROOKLYN'
 group by contributing_factor_vehicle_1  
 order by 2 desc 
 
@@ -30,13 +30,13 @@ sum(number_of_motorist_killed) motorist_killed,
 sum(number_of_pedestrians_killed) pedestrians_killed
 sum(number_of_persons_killed) persons_killed,
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-where borough = 'BROOKLYN' -- 391,772
+where borough = 'BROOKLYN' 
 
 
 --Top3 vehicle type
 select vehicle_type_code1 veh_type, count(unique_key) cnt 
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-where borough = 'BROOKLYN' -- 391,772
+where borough = 'BROOKLYN' 
 and vehicle_type_code1 is not null
 group by vehicle_type_code1
 order by 2 desc
@@ -47,7 +47,7 @@ limit 10
 select year,  AVG(daily_cnt) avg_cnt from(
 select EXTRACT(YEAR from timestamp) as year,FORMAT_DATETIME('%F', CAST(timestamp AS DATETIME)) AS date, count(unique_key) daily_cnt 
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-where borough = 'BROOKLYN' -- 391,772
+where borough = 'BROOKLYN' 
 group by EXTRACT(YEAR from timestamp), FORMAT_DATETIME('%F', CAST(timestamp AS DATETIME))
 ) group by year
 order by 2
@@ -74,7 +74,7 @@ SELECT  count(unique_key) cnt,
 case when contributing_factor_vehicle_1 is not null then 'AVAILABLE' else 'N/A' end contributing_factor_vehicle,
 case when EXTRACT(DATE from timestamp) is not null then 'AVAILABLE' else 'N/A' end timestamp_check
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-WHERE borough = 'BROOKLYN' -- 391,772
+WHERE borough = 'BROOKLYN'
 group by case when contributing_factor_vehicle_1 is not null then 'AVAILABLE' else 'N/A' end,
 case when EXTRACT(DATE from timestamp) is not null then 'AVAILABLE' else 'N/A' end
 
@@ -94,7 +94,7 @@ vehicle_type_code1 vehicle_type, contributing_factor_vehicle_1 collision_factor,
 number_of_cyclist_injured, number_of_cyclist_killed, number_of_motorist_injured, number_of_motorist_killed,
 number_of_pedestrians_injured, number_of_pedestrians_killed, number_of_persons_injured, number_of_persons_killed 
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-where borough = 'BROOKLYN' -- 391,772
+where borough = 'BROOKLYN' 
 
 
 
@@ -127,7 +127,7 @@ vehicle_type_code1 vehicle_type, contributing_factor_vehicle_1 collision_factor,
 number_of_cyclist_injured, number_of_cyclist_killed, number_of_motorist_injured, number_of_motorist_killed,
 number_of_pedestrians_injured, number_of_pedestrians_killed, number_of_persons_injured, number_of_persons_killed 
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-where borough = 'BROOKLYN' -- 391,772
+where borough = 'BROOKLYN' 
 )
 group by year, collision_factor
 )
@@ -153,7 +153,7 @@ vehicle_type_code1 vehicle_type, contributing_factor_vehicle_1 collision_factor,
 number_of_cyclist_injured, number_of_cyclist_killed, number_of_motorist_injured, number_of_motorist_killed,
 number_of_pedestrians_injured, number_of_pedestrians_killed, number_of_persons_injured, number_of_persons_killed 
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-where borough = 'BROOKLYN' -- 391,772
+where borough = 'BROOKLYN' 
 )
 group by borough, collision_factor
 order by 3 desc
@@ -178,7 +178,7 @@ vehicle_type_code1 vehicle_type, contributing_factor_vehicle_1 collision_factor,
 number_of_cyclist_injured, number_of_cyclist_killed, number_of_motorist_injured, number_of_motorist_killed,
 number_of_pedestrians_injured, number_of_pedestrians_killed, number_of_persons_injured, number_of_persons_killed 
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-where borough = 'BROOKLYN' -- 391,772
+where borough = 'BROOKLYN' 
 )
 --where year = 2019
 group by year, month, weekday, hr
@@ -208,7 +208,7 @@ vehicle_type_code1 vehicle_type, contributing_factor_vehicle_1 collision_factor,
 number_of_cyclist_injured, number_of_cyclist_killed, number_of_motorist_injured, number_of_motorist_killed,
 number_of_pedestrians_injured, number_of_pedestrians_killed, number_of_persons_injured, number_of_persons_killed 
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-where borough = 'BROOKLYN' -- 391,772
+where borough = 'BROOKLYN' 
 )
 group by year
 
@@ -219,10 +219,10 @@ sum(number_of_persons_injured)  injured,
 sum(number_of_persons_killed)  killed,
 count(unique_key) collision_cnt
 FROM `bigquery-public-data.new_york_mv_collisions.nypd_mv_collisions` 
-where borough = 'BROOKLYN' -- 391,772
+where borough = 'BROOKLYN' 
 and zip_code is not null
 group by zip_code
-order by 4 desc
+order by 3 desc
 
 
 
